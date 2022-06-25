@@ -1,0 +1,41 @@
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try {
+            URL  url = new URL("https://cbu.uz/oz/arkhiv-kursov-valyut/json/");
+            URLConnection urlConnection= url.openConnection();
+            BufferedReader reader=new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            Type type=new TypeToken<ArrayList<Currency>>(){}.getType();
+            ArrayList<Currency> currencies=gson.fromJson(reader, type);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+==============================
+
+InlineKeyboardMarkup inlineKeyboardMarkup=new InlineKeyboardMarkup();
+                sendMessage.setReplyMarkup(inlineKeyboardMarkup);
+                List<List<InlineKeyboardButton>> rowList=new ArrayList<List<InlineKeyboardButton>>();
+
+                List<InlineKeyboardButton> row1=new ArrayList<InlineKeyboardButton>();
+                InlineKeyboardButton iButton1=new InlineKeyboardButton("bu 1-joy");
+                iButton1.setCallbackData("ha bu 1-joy");
+                InlineKeyboardButton iButton2=new InlineKeyboardButton("bu 2-joy");
+                iButton2.setCallbackData("ha bu 2-joy");
+
+                row1.add(iButton1);
+                row1.add(iButton2);
+                rowList.add(row1);
+
+                List<InlineKeyboardButton> row2=new ArrayList<InlineKeyboardButton>();
+                InlineKeyboardButton iButton3=new InlineKeyboardButton("bu 3-joy.");
+                iButton3.setCallbackData("ha bu 3-joy");
+                InlineKeyboardButton iButton4=new InlineKeyboardButton("bu 4-joy.");
+                iButton4.setCallbackData("ha bu 4-joy");
+                row2.add(iButton3);
+                row2.add(iButton4);
+                rowList.add(row2);
+
+                inlineKeyboardMarkup.setKeyboard(rowList);
